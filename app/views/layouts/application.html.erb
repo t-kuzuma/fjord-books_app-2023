@@ -11,6 +11,16 @@
   </head>
 
   <body class="<%= params[:action] %>">
+    <header>
+      <nav>
+        <% if user_signed_in? %>
+          <%= link_to '本一覧', books_path %>
+          <%= link_to 'ユーザ一覧', users_path %>
+          <%= link_to '登録情報変更', edit_user_registration_path %>
+          <%= link_to 'ログアウト', destroy_user_session_path, data: { "turbo-method": :delete } %>
+        <% end %>
+      </nav>
+    </header>
     <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
     <% end %>

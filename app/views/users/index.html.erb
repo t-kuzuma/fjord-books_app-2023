@@ -1,0 +1,14 @@
+<h1>ユーザー一覧</h1>
+
+<div id="users" class="index-items">
+  <% @users.each do |user| %>
+    <div class="index-item">
+      <%= render user %>
+      <p>
+        <%= link_to 'この人を表示', user %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @users %>
