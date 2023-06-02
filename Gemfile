@@ -80,5 +80,5 @@ group :test do
 end
 
 gem 'carrierwave'
-gem 'kaminari'
 gem 'devise'
+gem 'kaminari'
