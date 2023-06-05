@@ -82,3 +82,6 @@ end
 gem 'carrierwave'
 gem 'devise'
 gem 'kaminari'
+group :development do
+  gem 'letter_opener_web'
+end
