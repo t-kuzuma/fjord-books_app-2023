@@ -200,6 +200,10 @@ ja:
       previous: '‹ 前'
       next: '次 ›'
       truncate: '…'
+    header:
+      list: "%{name}の一覧"
+      edit_registration: '登録情報変更'
+      logout: 'ログアウト'
   controllers:
     common:
       notice_create: "%{name}が作成されました。"

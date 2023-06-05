@@ -1,21 +1,21 @@
 <div id="<%= dom_id user %>">
   <p>
-    <strong>メールアドレス:</strong>
+    <strong><%= User.human_attribute_name(:email) %>:</strong>
     <%= user.email %>
   </p>
 
   <p>
-    <strong>郵便番号:</strong>
+    <strong><%= User.human_attribute_name(:postcode) %>:</strong>
     <%= user.postcode %>
   </p>
 
   <p>
-    <strong>住所:</strong>
+    <strong><%= User.human_attribute_name(:address) %>:</strong>
     <%= user.address %>
   </p>
 
   <p>
-    <strong>自己紹介文:</strong>
+    <strong><%= User.human_attribute_name(:introduction) %>:</strong>
     <%= user.introduction %>
   </p>
 

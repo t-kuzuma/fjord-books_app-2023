@@ -14,10 +14,10 @@
     <header>
       <nav>
         <% if user_signed_in? %>
-          <%= link_to '本一覧', books_path %>
-          <%= link_to 'ユーザ一覧', users_path %>
-          <%= link_to '登録情報変更', edit_user_registration_path %>
-          <%= link_to 'ログアウト', destroy_user_session_path, data: { "turbo-method": :delete } %>
+          <%= link_to t('views.header.list', name: Book.model_name.human.downcase), books_path %>
+          <%= link_to t('views.header.list', name: User.model_name.human.downcase), users_path %>
+          <%= link_to t('views.header.edit_registration'), edit_user_registration_path %>
+          <%= link_to t('views.header.logout'), destroy_user_session_path, data: { "turbo-method": :delete } %>
         <% end %>
       </nav>
     </header>

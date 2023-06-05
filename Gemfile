@@ -70,6 +70,7 @@ group :development do
   gem 'i18n_generators'
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -81,7 +82,5 @@ end
 
 gem 'carrierwave'
 gem 'devise'
+gem 'devise-i18n'
 gem 'kaminari'
-group :development do
-  gem 'letter_opener_web'
-end
