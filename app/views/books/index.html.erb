@@ -1,8 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<%= paginate @books %>
+<p><%= @books.current_page %> / <%= @books.total_pages %></p>
+<p><%= @books.total_count %><%= t('views.common.count') %> <%= @books.offset_value + 1 %>
+〜 <%= @books.offset_value + @books.length %> <%= t('views.common.displaying') %></p>
 
 <h1><%= t('views.common.title_index', name: i18n_pluralize(Book.model_name.human)) %></h1>
 
 <div id="books" class="index-items">
+
   <% @books.each do |book| %>
     <div class="index-item">
       <%= render book %>
