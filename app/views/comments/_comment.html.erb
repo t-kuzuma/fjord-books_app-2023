@@ -1,0 +1,21 @@
+<div>
+  <ul>
+    <% commentable.comments.each do |comment| %>
+      <li>
+        <%= comment.content %>
+        <small>
+          <%= comment.user.name.presence || comment.user.email %>
+          <%= comment.created_at.to_s(:datetime_jp) %>
+        </small>
+        <% if current_user == comment.user %>
+          <%= button_to t('削除'), polymorphic_path([commentable, comment]), method: :delete %>
+        <% end %>
+        <hr>
+      <% end %>
+    </li>
+  </ul>
+  <%= form_with model: [commentable, Comment.new] do |form| %>
+    <%= form.text_field :content, required: true %><br>
+    <%= form.submit %>
+  <% end %>
+</div>

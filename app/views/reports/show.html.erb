@@ -2,6 +2,8 @@
   <%= render @report %>
 </div>
 
+<%= render partial: 'comments/comment', locals: { commentable: @report } %>
+
 <nav class="page-nav">
   <%= link_to "Edit this report", edit_report_path(@report) if current_user == @report.user %> |
   <%= link_to "Back to reports", reports_path %>
