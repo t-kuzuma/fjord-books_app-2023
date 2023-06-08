@@ -16,9 +16,9 @@
   </ul>
   <div>
     <%= form_with model: [commentable, Comment.new] do |form| %>
-      <%= form.label :content, 'コメント', style: "display: block" %>
+      <%= form.label :content, t('views.common.comment'), style: "display: block" %>
       <%= form.text_field :content, required: true, style: 'margin-bottom: 20px;' %><br>
-      <%= form.submit 'コメントする' %>
+      <%= form.submit t('views.common.comment_bottun') %>
     <% end %>
   </div>
 </div>
