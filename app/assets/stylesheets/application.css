@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+ .comment_item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  list-style: none;
+}
+
+.comment_item small {
+  display: block;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.comment_item button {
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+.comment_form {
+  padding: 10px;
+  margin: 20px 0;
+}
