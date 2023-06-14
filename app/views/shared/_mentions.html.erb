@@ -1,0 +1,11 @@
+<ul>
+  <% mentions.each do |mention| %>
+    <li>
+      <%= link_to mention.title, mention %>
+      <small>
+        からリンク
+        (<%= link_to mention.user.name_or_email, mention.user %> の日報)
+      </small>
+    </li>
+  <% end %>
+</ul>

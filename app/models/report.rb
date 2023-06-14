@@ -24,4 +24,12 @@ class Report < ApplicationRecord
   def created_on
     created_at.to_date
   end
+
+  def save_mentions
+    self.mentioning_relations.destroy_all
+    mentioning_ids = self.content.to_s.scan(/http:\/\/localhost:3000\/reports\/(\d+)/).flatten.map(&:to_i).uniq
+    mentioning_ids.each do |mentioning_id|
+      self.mentioning_relations.create!(mentioning_report_id: self.id, mentioned_report_id: mentioning_id)
+    end
+  end
 end
