@@ -21,9 +21,9 @@ class Report < ApplicationRecord
 
   def save_mentions
     mentioning_relations.destroy_all
-    mentioning_ids = content.to_s.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i).uniq
-    mentioning_ids.each do |mentioning_id|
-      mentioning_relations.create!(mentioning_report_id: id, mentioned_report_id: mentioning_id)
+    mentioned_ids = content.to_s.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i).uniq
+    mentioned_ids.each do |mentioned_id|
+      mentioning_relations.create!(mentioning_report_id: id, mentioned_report_id: mentioned_id)
     end
   end
 end
