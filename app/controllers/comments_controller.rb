@@ -2,6 +2,7 @@
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: :destroy
+  before_action :redirect_unless_current_user, only: :destroy
 
   def create
     @comment = @commentable.comments.build(comment_params)
@@ -26,5 +27,11 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def redirect_unless_current_user
+    return if current_user == @commentable.user
+
+    redirect_to @commentable, alert: t('errors.messages.other_user')
   end
 end

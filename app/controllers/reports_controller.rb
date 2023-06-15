@@ -2,6 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
+  before_action :redirect_unless_current_user, only: %i[edit update destroy]
 
   def index
     @reports = Report.all
@@ -13,11 +14,7 @@ class ReportsController < ApplicationController
     @report = Report.new
   end
 
-  def edit
-    return if current_user == @report.user
-
-    redirect_to reports_url, alert: t('errors.messages.other_user')
-  end
+  def edit; end
 
   def create
     @report = current_user.reports.build(report_params)
@@ -50,5 +47,11 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:user_id, :title, :content)
+  end
+
+  def redirect_unless_current_user
+    return if current_user == @report.user
+
+    redirect_to reports_url, alert: t('errors.messages.other_user')
   end
 end
