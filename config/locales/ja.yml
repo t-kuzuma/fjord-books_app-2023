@@ -110,6 +110,7 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+      other_user: 他のユーザの情報は編集できません
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
@@ -196,6 +197,8 @@ ja:
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
+      comment: コメント
+      comment_bottun: コメントする
     pagination:
       first: '« 最初'
       last: '最後 »'

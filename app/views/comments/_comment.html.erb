@@ -1,0 +1,24 @@
+<div>
+  <ul>
+    <% commentable.comments.each do |comment| %>
+      <li class="comment_item">
+        <%= comment.content %>
+        <small>
+          <%= comment.user.name.presence || comment.user.email %>
+          |
+          <%= comment.created_at.to_s(:datetime_jp) %>
+        </small>
+        <% if current_user == comment.user %>
+          <%= button_to t('削除'), polymorphic_path([commentable, comment]), method: :delete, style: "display: inline_block" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <div>
+    <%= form_with model: [commentable, Comment.new] do |form| %>
+      <%= form.label :content, t('views.common.comment'), style: "display: block" %>
+      <%= form.text_field :content, required: true, style: 'margin-bottom: 20px;' %><br>
+      <%= form.submit t('views.common.comment_bottun') %>
+    <% end %>
+  </div>
+</div>
