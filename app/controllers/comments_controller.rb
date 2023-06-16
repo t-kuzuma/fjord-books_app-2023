@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
   end
 
   def redirect_unless_current_user
-    return if current_user == @commentable.user
+    return if current_user == @comment.user
 
     redirect_to @commentable, alert: t('errors.messages.other_user')
   end
