@@ -19,6 +19,24 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
+  def create_with_mentions
+    ActiveRecord::Base.transaction do
+      save!
+      save_mentions
+    end
+  rescue ActiveRecord::RecordInvalid
+    false
+  end
+
+  def update_with_mentions(params)
+    ActiveRecord::Base.transaction do
+      update!(params)
+      save_mentions
+    end
+  rescue ActiveRecord::RecordInvalid
+    false
+  end
+
   def save_mentions
     mentioning_relations.destroy_all
     mentioned_ids = content.to_s.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i).uniq
