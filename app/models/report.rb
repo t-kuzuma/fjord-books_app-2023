@@ -20,26 +20,35 @@ class Report < ApplicationRecord
   end
 
   def create_with_mentions
+    result = false
     ActiveRecord::Base.transaction do
-      return false unless save
-      return false unless save_mentions
+      if save && save_mentions
+        result = true
+      else
+        raise ActiveRecord::Rollback
+      end
     end
-    true
+    result
   end
 
   def update_with_mentions(params)
+    result = false
     ActiveRecord::Base.transaction do
-      return false unless update(params)
-      return false unless save_mentions
+      if update(params) && save_mentions
+        result = true
+      else
+        raise ActiveRecord::Rollback
+      end
     end
-    true
+    result
   end
 
   def save_mentions
     mentioning_relations.destroy_all
     mentioned_ids = content.to_s.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i).uniq
     mentioned_ids.each do |mentioned_id|
-      mentioning_relations.create(mentioning_report_id: id, mentioned_report_id: mentioned_id)
+      mentioning_relation = mentioning_relations.build(mentioning_report_id: id, mentioned_report_id: mentioned_id)
+      return false unless mentioning_relation.save
     end
   end
 end
