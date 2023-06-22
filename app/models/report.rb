@@ -52,5 +52,6 @@ class Report < ApplicationRecord
         return false unless mentioning_relation.save
       end
     end
+    true
   end
 end
