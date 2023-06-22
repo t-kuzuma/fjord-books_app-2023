@@ -47,8 +47,10 @@ class Report < ApplicationRecord
     mentioning_relations.destroy_all
     mentioned_ids = content.to_s.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i).uniq
     mentioned_ids.each do |mentioned_id|
-      mentioning_relation = mentioning_relations.build(mentioning_report_id: id, mentioned_report_id: mentioned_id)
-      return false unless mentioning_relation.save
+      if Report.find_by(id: mentioned_id)
+        mentioning_relation = mentioning_relations.build(mentioning_report_id: id, mentioned_report_id: mentioned_id)
+        return false unless mentioning_relation.save
+      end
     end
   end
 end
